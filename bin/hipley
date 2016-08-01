@@ -79,7 +79,7 @@ function runGulp (task, env, cb) {
     fs.statSync(gulpPath)
   }
   catch (e) {
-    gulpPath = path.resolve(__dirname, '../.bin/gulp')
+    gulpPath = path.resolve(__dirname, '../../.bin/gulp')
     fs.statSync(gulpPath)
   }
   return run({
