@@ -74,8 +74,16 @@ function run (opts, cb) {
 
 // Helper to run a gulp task.
 function runGulp (task, env, cb) {
+  try {
+    var gulpPath = path.resolve(__dirname, '../node_modules/.bin/gulp')
+    fs.statSync(gulpPath)
+  }
+  catch (e) {
+    gulpPath = path.resolve(__dirname, '../.bin/gulp')
+    fs.statSync(gulpPath)
+  }
   return run({
-    cmd: path.resolve(__dirname, '../node_modules/.bin/gulp'),
+    cmd: gulpPath,
     args: [task, '--cwd', __dirname],
     env: getEnv(env)
   }, cb)
